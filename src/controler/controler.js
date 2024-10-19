@@ -350,6 +350,10 @@ class Controler {
                 res.status(400).json({
                     message: "Không tìm thấy dữ liệu thích hợp"
                 })
+                await connection.excuteQuery(`update classRegisted set isrefund = 1 where id = ${id}`)
+                    .catch((e) => {
+                        console.log(e);
+                    })
                 return
             }
 
