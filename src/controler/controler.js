@@ -273,6 +273,9 @@ class Controler {
             userId = Number(userId)
             id = Number(id)
             studentCode = Number(studentCode)
+
+
+
             let registedClass = await connection.excuteQuery(`select * from classRegisted where userId = ${Number(userId)} and id = ${id || -1} and studentCode = '${studentCode}'`)
                 .then((data) => {
                     return data[0];
@@ -345,7 +348,7 @@ class Controler {
 
             if (!regited) {
                 res.status(400).json({
-                    message: "Không tìm thấy dữ liệu thích hợp!!"
+                    message: "Không tìm thấy dữ liệu thích hợp"
                 })
                 return
             }
