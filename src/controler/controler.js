@@ -257,8 +257,6 @@ class Controler {
     }
 
 
-
-
     async refund(req, res) {
 
         try {
@@ -283,6 +281,8 @@ class Controler {
                 .catch((e) => {
                     console.log(e);
                 })
+
+            console.log("registedClass : ", registedClass);
 
             if (!registedClass) {
                 res.status(400).json({
@@ -327,11 +327,16 @@ class Controler {
                 })
                 return
             }
+            // console.log("listOrdered : ", listOrdered);
+
 
 
             let listOrderedSameClass = listOrdered.filter((e) => {
-                return e.cc == registedClass.ClassCode
+                return e.cc == registedClass.classCode
             })
+
+            // console.log("listOrderedSameClass : ", listOrderedSameClass);
+
 
 
             let timeArray = listOrderedSameClass.map((e) => {
@@ -344,6 +349,9 @@ class Controler {
             let regited = listOrderedSameClass.find((e) => {
                 return Math.abs(Number(services.convertStringToDateNow(e.tm) - registedClass.timeRegisted) == minTime)
             })
+
+            // console.log("regited : ", regited);
+
 
 
             if (!regited) {
@@ -377,9 +385,6 @@ class Controler {
                 .catch((e) => {
                     console.log(e);
                 })
-
-
-
 
             res.status(200).json({
                 message: "ok",
