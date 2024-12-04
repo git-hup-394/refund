@@ -194,19 +194,25 @@ class Services {
         return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
     }
 
-    convertStringToDateNow(s) {
-        // Chuyển đổi chuỗi sang định dạng Date
-        let dateParts = s.split(' ')[0].split('-');
-        let timeParts = s.split(' ')[1].split(':');
+    convertStringToDateNow(dateString) {
+        // Chuyển đổi định dạng "DD-MM-YYYY HH:MM:SS" thành đối tượng Date
+        const dateParts = dateString.split(' ');
+        const date = dateParts[0].split('-');
+        const time = dateParts[1].split(':');
 
-        let date = new Date(Date.UTC(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]));
+        // Lấy các phần của ngày tháng và giờ
+        const day = date[0];
+        const month = date[1] - 1; // Tháng trong JavaScript bắt đầu từ 0 (0 = tháng 1)
+        const year = date[2];
+        const hours = time[0];
+        const minutes = time[1];
+        const seconds = time[2];
 
-        // Việt Nam là UTC+7
-        let vietnamTime = new Date(date.getTime() + (7 * 60 * 60 * 1000));
+        // Tạo đối tượng Date mới từ các giá trị trên
+        const formattedDate = new Date(year, month, day, hours, minutes, seconds);
 
-        // Lấy giá trị theo mili giây
-        let timestamp = vietnamTime.getTime();
-        return timestamp
+        // Trả về timestamp (milliseconds từ epoch)
+        return formattedDate.getTime();
     }
 
 
