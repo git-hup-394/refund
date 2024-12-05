@@ -1,6 +1,6 @@
 const { connection } = require('../database/connection.js')
 const Services = require('./services.js')
-
+const fs = require("fs")
 
 const services = new Services()
 
@@ -82,32 +82,39 @@ class Controler {
                 })
                 return
             }
-            // console.log("listOrdered : ", listOrdered);
+            console.log("listOrdered : ", listOrdered);
 
 
 
             let listOrderedSameClass = listOrdered.filter((e) => {
-                return e.cc == registedClass.classCode
+                return e.cc == registedClass.classCode && !e.st.includes("Hủy")
             })
 
-            // console.log("listOrderedSameClass : ", listOrderedSameClass);
+            console.log("listOrderedSameClass : ", listOrderedSameClass);
 
 
 
             let timeArray = listOrderedSameClass.map((e) => {
-                return services.convertStringToDateNow(e.tm) - registedClass.timeRegisted
-            })
+                return Math.abs(
+                    services.convertStringToDateNow(e.tm) - registedClass.timeRegisted
+                );
+            });
 
+            let minTime = Math.min(...timeArray);
 
-
-            let minTime = Math.max(...timeArray)
-
+            // fs.writeFileSync("./time.txt", JSON.stringify(timeArray))
 
             let regited = listOrderedSameClass.find((e) => {
-                return Math.abs(Number(services.convertStringToDateNow(e.tm) - registedClass.timeRegisted) == minTime)
-            })
+                return (
+                    Math.abs(
+                        services.convertStringToDateNow(e.tm) - registedClass.timeRegisted
+                    ) === minTime
+                );
+            });
 
-            // console.log("regited : ", regited);
+
+
+            console.log("regited : ", regited);
 
 
 

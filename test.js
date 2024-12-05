@@ -22,27 +22,29 @@ function convertToTimestamp(dateString) {
 }
 
 // Ví dụ sử dụng hàm
-const timestamp = convertToTimestamp("04-12-2024 13:14:13");//04-12-2024 09:05:34
-console.log(convertToTimestamp("04-12-2024 09:05:34"));
+const timestamp = convertToTimestamp("05-12-2024 09:08:39");//04-12-2024 09:05:34
+// console.log(convertToTimestamp("04-12-2024 09:05:34"));
 
 // console.log(timestamp); // In ra timestamp (milliseconds)
-// let tp2 = sv.formatDate(1733292853744)
+// let tp2 = sv.formatDate(1733364505837)
 // console.log(tp2);
 // console.log(convertToTimestamp(tp2));
 // console.log(sv.formatDate(1733292853744));
 
 // console.log(sv.formatDate(1733292853000));
 
-// console.log(292855974 - 343254000); //328334000
+// console.log(1733364505837 - 1733364519000); //-13163
+console.log(1733364505837 - 1733364503000); //-13163
+
 
 // console.log(Math.abs(Number(1733292853000 - 1733277934000)));
 
 
-console.log(1733292855974 - convertToTimestamp("04-12-2024 13:14:14"));
-console.log(1733292855974 - convertToTimestamp("04-12-2024 09:05:34"));
+// console.log(1733292855974 - convertToTimestamp("04-12-2024 13:14:14"));
+// console.log(1733292855974 - convertToTimestamp("04-12-2024 09:05:34"));
 
-console.log(1733292855974 - sv.convertStringToDateNow("04-12-2024 13:14:14"));
-console.log(1733292855974 - sv.convertStringToDateNow("04-12-2024 09:05:34"));
+// console.log(1733292855974 - sv.convertStringToDateNow("04-12-2024 13:14:14"));
+// console.log(1733292855974 - sv.convertStringToDateNow("04-12-2024 09:05:34"));
 
 
 
